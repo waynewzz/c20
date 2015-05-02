@@ -1,0 +1,81 @@
+
+
+
+Step 1: Check for SSH keys
+
+$ls -al ~/.ssh
+
+Step 2: Generate a new SSH key
+
+$ssh-keygen -t rsa -C "your_email@example.com"
+
+Enter file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
+
+Enter passphrase (empty for no passphrase): [Type a passphrase]
+# Enter same passphrase again: 
+[Type passphrase again]
+
+Your identification has been saved in /Users/you/.ssh/id_rsa.
+# Your public key has been saved in /Users/
+you/.ssh/id_rsa.pub.
+# The key fingerprint is:
+# 
+01:0f:f4:3b:ca:85:d6:17:a1:7d:f0:68:9d:f0:a2:db your_email@example.com
+
+
+Step 3: Add your key to the ssh-agent
+
+$eval "$(ssh-agent -s)"
+
+$ssh-add ~/.ssh/id_rsa
+
+Step 4: Add your SSH key to your account
+
+To configure your GitHub account to use your SSH key:
+
+    In your favorite text editor, open the ~/.ssh/id_rsa.pub file.
+    Select the entire contents of the file and copy it to your clipboard. Do not add any newlines or whitespace.
+
+Warning: It's important to copy the key exactly without adding newlines or whitespace.
+
+Add the copied key to GitHub:
+
+    Settings icon in the user barIn the top right corner of any page, click 
+
+    .
+
+    SSH keysIn the user settings sidebar, click SSH keys.
+
+    SSH Key buttonClick Add SSH key.
+    In the Title field, add a descriptive label for the new key. For example, if you're using a personal Mac, you might call this key "Personal MacBook Air".
+    The key fieldPaste your key into the "Key" field.
+    The Add key buttonClick Add key.
+    Confirm the action by entering your GitHub password.
+
+Step 5: Test the connection
+
+To make sure everything is working, you'll now try to SSH into . When you do this, you will be asked to authenticate this action using your password, which is the SSH key passphrase you created earlier.
+
+    Open the command line and enter:
+
+    ssh -T git@github.com
+    # Attempts to ssh to GitHub
+
+    You may see this warning:
+
+    # The authenticity of host 'github.com (207.97.227.239)' can't be established.
+    # RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+    # Are you sure you want to continue connecting (yes/no)?
+
+    Verify the fingerprint in the message you see matches the following message, then type yes:
+
+    # Hi username! You've successfully authenticated, but GitHub does not
+    # provide shell access.
+
+    If the username in the message is yours, you've successfully set up your SSH key!
+
+    If you receive a message about "access denied," you can read these instructions for diagnosing the issue.
+
+    If you're switching from HTTPS to SSH, you'll now need to update your remote repository URLs. For more information, see Changing a remote's URL.
+
+
