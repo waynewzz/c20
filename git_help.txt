@@ -79,3 +79,18 @@ To make sure everything is working, you'll now try to SSH into . When you do thi
     If you're switching from HTTPS to SSH, you'll now need to update your remote repository URLs. For more information, see Changing a remote's URL.
 
 
+//add file to remote git
+
+
+@1> first git pull
+$git init
+$git add filename                 #filename is pull filename.
+$git remote add origin https://github.com/waynewzz/c20.git #origin git content
+$git push -u orgin master
+
+@2>seconf git pull
+$git add filename
+$git push -u origin master
+
+
+
